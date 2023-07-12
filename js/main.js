@@ -23,7 +23,7 @@ edad()
 
 
 function descuentoGPU(){
-    var aceptarOferta = confirm("Es usted usuario de Comprasxd? En caso de serlo cuenta con un descuento del 10%");
+    let aceptarOferta = confirm("Es usted usuario de Comprasxd? En caso de serlo cuenta con un descuento del 10%");
         if(aceptarOferta){
             alert("Contamos con una rtx1080ti a $9.000, con cuanto desea abonar?")
             return true // esto le dice al if de abajo si vuelve como true
@@ -39,7 +39,7 @@ function descuentoGPU(){
 
 function calcularPrecio(precioOriginal, descuento){
     if(descuentoGPU()){
-        var precioConDescuento = precioOriginal - (precioOriginal * descuento);
+        let precioConDescuento = precioOriginal - (precioOriginal * descuento);
         return precioConDescuento
 
     }else {
@@ -47,7 +47,7 @@ function calcularPrecio(precioOriginal, descuento){
     }
 }
 
-var precio = calcularPrecio(10000, 0.10)
+let precio = calcularPrecio(10000, 0.10)
 
 console.log("Precio final: " + precio)
 
@@ -56,7 +56,7 @@ console.log("Precio final: " + precio)
 function comprar1080ti(dinero){
     while(dinero <= precio){
         const dineroFaltante = precio - dinero;
-        alert("dinero insuficiente, necesita $" + dineroFaltante + "más");
+        alert("dinero insuficiente, necesita $" + dineroFaltante + " más");
         dinero = prompt("Ingrese el monto a abonar nuevamente")
     
     }
