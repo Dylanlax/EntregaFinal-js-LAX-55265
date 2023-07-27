@@ -1,6 +1,6 @@
 
 
-function bienvenida(){
+/* function bienvenida(){
     let nombre = prompt("Ingrese su nombre")
     alert("Bienvenido a nuestro sitio " + nombre + "!")
 }
@@ -67,4 +67,46 @@ function comprar1080ti(dinero){
         }
 }
 
-console.log(comprar1080ti(prompt("ingrese monto")))
+console.log(comprar1080ti(prompt("ingrese monto"))) */
+
+
+
+const productos = [
+    {nombre: "gtx1080ti", precio:10000},
+    {nombre: "rtx3060ti", precio:15000},
+    {nombre: "intel-i5", precio:12000},
+    {nombre: "intel-i7", precio:15000},
+]
+
+let carrito = []
+
+function pregunta(){
+    let elegi = prompt("Desea ver que productos tenemos en stock? si o no");
+        while(elegi != "si" && elegi != "no"){
+            alert("por favor ingrese si o no")
+            elegi = prompt("Desea ver que productos tenemos en stock? si o no");
+
+        }
+        if(elegi == "si"){
+            alert("Poseemos en stock los siguientes productos:")
+            let mostrarProductos = productos.map((producto) => producto.nombre + " " + producto.precio + "$")
+            alert(mostrarProductos.join(" | "))
+            return true
+        }else if(elegi == "no"){
+            alert("Gracias por visitarnos vuelva prontos")
+        }
+}
+
+
+
+function agregarAlCarrito() {
+    if(pregunta()){
+        let buscador = prompt("ingrese el producto que desea comprar").trim()
+        let resultado = productos.filter((producto) => producto.nombre.includes(buscador))
+        if(resultado.length > 0){
+            console.table(resultado)
+        }
+    }
+    }
+
+agregarAlCarrito()
