@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+}
+
+header nav {
+        width: 100%;
+    position: sticky;
+    top: 0px;
+    z-index: 4;
+}
+
+.navbar {
+    padding: 0px;
+
+    li a:hover {
+        color: red;
+    }
+    
+    ul {
+        gap: 15px;
+    }
+
+    li a:active {
+        color: red;
+        background-color: rgb(113, 160, 113);
+    }
+
+    div {
+        background-color: rgb(218, 135, 28);
+        padding-bottom: 15px;
+    }
+
+    img {
+        width: 100px;
+    }
+}
