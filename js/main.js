@@ -8,79 +8,76 @@ function bienvenida(){
 
 bienvenida()
 
-function edad(){
-    let edad = parseInt(prompt("Ingrese su edad"))
-
-        while (edad < 18) {
-            alert("Usted necesita ser mayor a 18 años para poder ingresar");
-            edad = parseInt(prompt("Ingrese su edad nuevamente"));
-        }
-
-    alert("usted cumple con la edad requerida para ingresar")
-}
-
-edad()
-
-
-
-
-
-const productos = [
-    {nombre: "gtx1080ti", precio:10000},
-    {nombre: "rtx3060ti", precio:15000},
-    {nombre: "intel-i5", precio:12000},
-    {nombre: "volante logitech", precio:150000},
-]
-
-let carrito = []
-
-function pregunta(){
-    let elegi = prompt("Desea ver que productos tenemos en stock? si o no");
-        while(elegi != "si" && elegi != "no"){
-            alert("por favor ingrese si o no")
-            elegi = prompt("Desea ver que productos tenemos en stock? si o no");
-
-        }
-        if(elegi == "si"){
-            alert("Poseemos en stock los siguientes productos:")
-            let mostrarProductos = productos.map((producto) => producto.nombre.toUpperCase() + " " + producto.precio + "$")
-            alert(mostrarProductos.join(" | "))
-            return true
-        }else if(elegi == "no"){
-            alert("Gracias por visitarnos vuelva prontos")
-            return false
-        }
-}
-
-
-function agregarAlCarrito(producto){
-    carrito.push(producto)
-}
-
-
-function comprar() {
-    if(pregunta()){
-        let pregunta2 = confirm("Desea comprar algo?")
-        while(pregunta2 === true){
-            let buscador = prompt("ingrese el producto que desea comprar").trim().toUpperCase()
-        let resultado = productos.filter((producto) => producto.nombre.toUpperCase().includes(buscador))
-        if(resultado.length > 0){
-            console.table(resultado) // nose porque algunos resultados si me los muestra como table y otros no
-            resultado.forEach((producto)=> agregarAlCarrito(producto))
-            console.table(carrito)
-            
-        }else{
-            alert("no se encontro ninguna coincidencia con: " + buscador)
-        }
-        pregunta2 = confirm("Desea comprar algo más?")
-        }
-        
+/* document.addEventListener("keyup", e => { //aca le pido que cuando suelto la tecla haga la E
+    if (e.target.matches("#buscador")) {
+        document.querySelectorAll(".articulo").forEach(componente => { // aca le pido que recorra todos los articulos
+            componente.textContent.toLowerCase().includes(e.target.value) // devuelve true o false si hay coincidencia
+            ? componente.classList.remove("filtro")
+            : componente.classList.add("filtro") // Use operador de IF y ELSE, le pido que si no coincide agregue la clase filtro y esconda la busqueda
+        })
     }
-}
+}) */ // ESTE FUE MI PRIMER INTENTO
 
-comprar()
+document.addEventListener("keyup", e => { //aca le pido que cuando suelto la tecla haga la E
+    if (e.target.matches("#buscador")) {
+        document.querySelectorAll(".articulo").forEach(componente => { // aca le pido que recorra todas las cards
+            const parrafo = componente.querySelector("p:first-of-type"); // Creo una variable que solo lea los primeros parrafos de cada card, porque el segundo parrafo es el precio
+            const match = parrafo.textContent.toLowerCase().includes(e.target.value)
+            ? componente.classList.remove("filtro")
+            : componente.classList.add("filtro") // Use operador de IF y ELSE, le pido que si no coincide agregue la clase filtro y esconda la busqueda
+        })
+    }
+})
 
 
 
-const total = carrito.reduce((x,y) =>x + y.precio, 0)
-alert("el total a pagar es: $" + total)
+/* -------------------------------------------------*/
+
+// INTENTO DE CARRITO
+
+
+// Lista de contenedores de productos
+const listaDeProductos = document.querySelector(".productList")
+
+
+// Variable de carrito
+let allProducts = []
+
+
+
+listaDeProductos.addEventListener("click", i => {
+    if(i.target.classList.contains("btn-add-cart")){
+        const product = i.target.parentElement // LE PIDO QUE SI DOY CLICK EN BUTTON SELECCIONE EL PADRE DE LA CARD QUE CONTIENE ESE BUTTON
+
+
+        
+        
+        const infoProduct = {
+            quantity: 1,
+            title: product.querySelector("p:first-of-type").textContent, // Le pido que lea el nombre del producto
+            price: product.querySelector("p:nth-of-type(2n)").textContent, // le pido que lea el precio del producto
+
+        }
+
+        allProducts = [...allProducts, infoProduct]
+        saveLocal()
+        console.log(allProducts)
+    }
+})
+
+
+
+// Funcion para localstorage
+
+
+//set item
+
+
+const saveLocal = () => {
+    localStorage.setItem("carrito", JSON.stringify(allProducts));
+};
+
+
+
+
+
