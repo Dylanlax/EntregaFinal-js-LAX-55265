@@ -16,11 +16,14 @@ img {
   justify-content: center;
   align-items: center;
   margin-top: 10px;
-  margin-bottom: 100px;
+  margin-bottom: 60px;
 }
 
 #buscador {
   display: inline-block;
+  width: 350px;
+  height: 40px;
+  border-radius: 15px;
 }
 
 .padre-cards {
@@ -29,6 +32,7 @@ img {
   align-items: center;
   justify-content: center;
   gap: 40px;
+  margin-bottom: 100px;
 }
 
 @media (min-width: 768px) {
