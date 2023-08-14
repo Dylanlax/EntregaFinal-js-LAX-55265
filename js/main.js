@@ -60,12 +60,24 @@ listaDeProductos.addEventListener("click", i => {
         }
 
         allProducts = [...allProducts, infoProduct]
-
+        saveLocal()
         console.log(allProducts)
     }
 })
 
 
 
-// Funcion para mostrar HTML
+// Funcion para localstorage
+
+
+//set item
+
+
+const saveLocal = () => {
+    localStorage.setItem("carrito", JSON.stringify(allProducts));
+};
+
+
+
+
 
