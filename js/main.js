@@ -28,3 +28,44 @@ document.addEventListener("keyup", e => { //aca le pido que cuando suelto la tec
         })
     }
 })
+
+
+
+/* -------------------------------------------------*/
+
+// INTENTO DE CARRITO
+
+
+// Lista de contenedores de productos
+const listaDeProductos = document.querySelector(".productList")
+
+
+// Variable de carrito
+let allProducts = []
+
+
+
+listaDeProductos.addEventListener("click", i => {
+    if(i.target.classList.contains("btn-add-cart")){
+        const product = i.target.parentElement // LE PIDO QUE SI DOY CLICK EN BUTTON SELECCIONE EL PADRE DE LA CARD QUE CONTIENE ESE BUTTON
+
+
+        
+        
+        const infoProduct = {
+            quantity: 1,
+            title: product.querySelector("p:first-of-type").textContent, // Le pido que lea el nombre del producto
+            price: product.querySelector("p:nth-of-type(2n)").textContent, // le pido que lea el precio del producto
+
+        }
+
+        allProducts = [...allProducts, infoProduct]
+
+        console.log(allProducts)
+    }
+})
+
+
+
+// Funcion para mostrar HTML
+
