@@ -1,12 +1,12 @@
 
 
-function bienvenida(){
+/* function bienvenida(){
     let nombre = prompt("Ingrese su nombre")
     alert("Bienvenido a nuestro sitio " + nombre + "!")
 }
 
 
-bienvenida()
+bienvenida() */
 
 
 
@@ -74,7 +74,7 @@ listaDeProductos.addEventListener("click", i => {
         
         saveLocal()
         showHTML()
-        console.log(allProducts)
+        
     }
 })
 
@@ -123,11 +123,7 @@ rowProduct.addEventListener('click', (e) => {
 const showHTML = () => {
 
 
-    if(!allProducts.length){
-        containerCartProducts.innerHTML=`
-            <p class="cart-empty">El carrito esta vacio</p>
-        `
-    }
+    
 
     // Limpiar html
 
@@ -172,6 +168,8 @@ const showHTML = () => {
 
         rowProduct.append(containerProduct);
 
+        
+
         // para actualizar el valor
 
         total = total + parseInt(product.quantity * product.price.slice(1));
@@ -182,4 +180,7 @@ const showHTML = () => {
 valorTotal.innerText = `$${total}`;
 
 countProducts.innerText = totalOfProducts;
+
+
+
 }
