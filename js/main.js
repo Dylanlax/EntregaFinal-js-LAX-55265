@@ -8,15 +8,7 @@ function bienvenida(){
 
 bienvenida()
 
-/* document.addEventListener("keyup", e => { //aca le pido que cuando suelto la tecla haga la E
-    if (e.target.matches("#buscador")) {
-        document.querySelectorAll(".articulo").forEach(componente => { // aca le pido que recorra todos los articulos
-            componente.textContent.toLowerCase().includes(e.target.value) // devuelve true o false si hay coincidencia
-            ? componente.classList.remove("filtro")
-            : componente.classList.add("filtro") // Use operador de IF y ELSE, le pido que si no coincide agregue la clase filtro y esconda la busqueda
-        })
-    }
-}) */ // ESTE FUE MI PRIMER INTENTO
+
 
 document.addEventListener("keyup", e => { //aca le pido que cuando suelto la tecla haga la E
     if (e.target.matches("#buscador")) {
@@ -38,11 +30,15 @@ document.addEventListener("keyup", e => { //aca le pido que cuando suelto la tec
 
 // Lista de contenedores de productos
 const listaDeProductos = document.querySelector(".productList")
-
+const rowProduct = document.querySelector(".row-product")
 
 // Variable de carrito
 let allProducts = []
 
+
+const valorTotal = document.querySelector('.total-pagar')
+
+const countProducts = document.querySelector('#contador-productos')
 
 
 listaDeProductos.addEventListener("click", i => {
@@ -59,8 +55,25 @@ listaDeProductos.addEventListener("click", i => {
 
         }
 
-        allProducts = [...allProducts, infoProduct]
+        const exits = allProducts.some(product => product.title === infoProduct.title)
+
+        if (exits) {
+            const products = allProducts.map(product => {
+                if(product.title === infoProduct.title){
+                    product.quantity++
+                    return product
+                } else {
+                    return product // ESTO ES PARA SUMAR EL CONTADOR DE QUANTITY
+                }
+            })
+            allProducts = [...products]
+        } else {
+            allProducts = [...allProducts, infoProduct]
+        }
+
+        
         saveLocal()
+        showHTML()
         console.log(allProducts)
     }
 })
@@ -80,4 +93,93 @@ const saveLocal = () => {
 
 
 
+// funcion de carrito
 
+const btnCart = document.querySelector('.container-icon')
+const containerCartProducts = document.querySelector('.container-cart-products')
+
+btnCart.addEventListener('click', () => {
+    containerCartProducts.classList.toggle('hidden-cart')
+})
+
+
+// para eliminar del carrito
+
+rowProduct.addEventListener('click', (e) => {
+    if(e.target.classList.contains('icon-close')){
+        const product = e.target.parentElement
+        const title = product.querySelector('p').textContent
+
+
+        allProducts = allProducts.filter( product => product.title !== title);
+    
+        showHTML()
+    }   
+})
+
+
+
+
+const showHTML = () => {
+
+
+    if(!allProducts.length){
+        containerCartProducts.innerHTML=`
+            <p class="cart-empty">El carrito esta vacio</p>
+        `
+    }
+
+    // Limpiar html
+
+    rowProduct.innerHTML= '';
+
+
+    // total del carrito
+
+    let total = 0;
+    let totalOfProducts = 0;
+
+
+
+    allProducts.forEach(product => {
+        const containerProduct = document.createElement("div")
+        containerProduct.classList.add("cart-product")
+
+        containerProduct.innerHTML=`
+        
+
+    <div class="info-cart-product">
+                <span class="cantidad-producto-carrito">${product.quantity}</span>
+                <p class="titulo-producto-carrito">${product.title}</p>
+                <span class="precio-producto-carrito">${product.price}</span>
+            </div>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="icon-close"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                />
+            </svg>
+        
+        `
+
+        rowProduct.append(containerProduct);
+
+        // para actualizar el valor
+
+        total = total + parseInt(product.quantity * product.price.slice(1));
+    
+        totalOfProducts = totalOfProducts + product.quantity;
+    });
+
+valorTotal.innerText = `$${total}`;
+
+countProducts.innerText = totalOfProducts;
+}

@@ -1,6 +1,9 @@
-* {
+*::after,
+*::before,
+*{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 $color-principal: rgba(241, 156, 121,0.8);
