@@ -1,14 +1,20 @@
 
+const saveLocal = () => {
+    localStorage.setItem("carrito", JSON.stringify(allProducts));
+};
 
-/* function bienvenida(){
-    let nombre = prompt("Ingrese su nombre")
-    alert("Bienvenido a nuestro sitio " + nombre + "!")
-}
+// Variable de carrito
+let allProducts = []
 
+const loadLocal = () => {
+    const storedCart = localStorage.getItem("carrito");
+    if (storedCart) {
+        allProducts = JSON.parse(storedCart);
+        
+    }
+};
 
-bienvenida() */
-
-
+loadLocal()
 
 document.addEventListener("keyup", e => { //aca le pido que cuando suelto la tecla haga la E
     if (e.target.matches("#buscador")) {
@@ -32,8 +38,7 @@ document.addEventListener("keyup", e => { //aca le pido que cuando suelto la tec
 const listaDeProductos = document.querySelector(".productList")
 const rowProduct = document.querySelector(".row-product")
 
-// Variable de carrito
-let allProducts = []
+
 
 
 const valorTotal = document.querySelector('.total-pagar')
@@ -86,9 +91,7 @@ listaDeProductos.addEventListener("click", i => {
 //set item
 
 
-const saveLocal = () => {
-    localStorage.setItem("carrito", JSON.stringify(allProducts));
-};
+
 
 
 
@@ -112,8 +115,10 @@ rowProduct.addEventListener('click', (e) => {
 
 
         allProducts = allProducts.filter( product => product.title !== title);
-    
+
+    saveLocal()
         showHTML()
+        
     }   
 })
 
@@ -175,12 +180,16 @@ const showHTML = () => {
         total = total + parseInt(product.quantity * product.price.slice(1));
     
         totalOfProducts = totalOfProducts + product.quantity;
+        
     });
 
 valorTotal.innerText = `$${total}`;
 
 countProducts.innerText = totalOfProducts;
 
+saveLocal();
 
 
 }
+
+showHTML()
