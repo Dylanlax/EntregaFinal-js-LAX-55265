@@ -44,9 +44,7 @@ carrito.forEach((product) => {
     let restar = carritoContent.querySelector(".restar")
 
     restar.addEventListener("click", () =>{
-        if(product.cantidad != 1){
-            product.cantidad--;
-        }
+        product.cantidad = product.cantidad > 1 ? product.cantidad - 1 : product.cantidad;
         saveLocal();
         pintarCarrito()
     })

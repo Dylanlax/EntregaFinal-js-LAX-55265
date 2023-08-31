@@ -76,6 +76,10 @@ const getProducts = async () => {
                 cantidad: product.cantidad,
             })}
 
+            if (modalContainer.style.display === "flex") {
+                pintarCarrito();
+            }
+
             Toastify({
                 text: "Producto agregado!",
                 duration: 3000,
