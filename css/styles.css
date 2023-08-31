@@ -172,6 +172,14 @@ img {
   display: none;
 }
 
+.sumar {
+  cursor: pointer;
+}
+
+.restar {
+  cursor: pointer;
+}
+
 .icon-cart {
   width: 40px;
   height: 40px;

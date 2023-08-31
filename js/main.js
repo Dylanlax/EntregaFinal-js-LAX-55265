@@ -35,7 +35,7 @@ const productos = [{ nombre: "PROCESADOR INTEL I5 11400", precio: 100000, imagen
 
 
 // Variable de carrito
-let carrito = []
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
 //INYECCION DE PRODUCTOS
 
@@ -80,7 +80,17 @@ productos.forEach((product)=> {
         })}
         /* console.log(carrito) */
         carritoCounter()
+        saveLocal()
     })
 });
+
+
+// set item
+
+const saveLocal = () =>{
+    localStorage.setItem("carrito", JSON.stringify(carrito))
+}
+
+
 
 
