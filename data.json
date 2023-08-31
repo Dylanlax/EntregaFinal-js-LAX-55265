@@ -1,0 +1,6 @@
+[{ "nombre": "PROCESADOR INTEL I5 11400", "precio": 100000, "imagen": "img/procesador intel i5.jpg", "id":1, "cantidad": 1},
+    {"nombre": "PROCESADOR AMD RYZEN 5 4500", "precio": 100000, "imagen": "img/ryzen 5 4500.jpg", "id": 2, "cantidad": 1},
+    {"nombre": "Grafica rtx3060ti", "precio": 250000, "imagen": "img/3060ti.png", "id": 3, "cantidad": 1},
+    {"nombre": "PROCESADOR INTEL CELERON", "precio": 50000, "imagen": "img/intel celeron.jpg", "id": 4, "cantidad": 1},
+    {"nombre": "GRAFICA RX 580", "precio": 100000, "imagen": "img/rx580.jpg", "id": 5, "cantidad": 1}
+]
