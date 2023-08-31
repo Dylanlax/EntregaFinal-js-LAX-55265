@@ -75,6 +75,22 @@ const getProducts = async () => {
                 precio: product.precio,
                 cantidad: product.cantidad,
             })}
+
+            Toastify({
+                text: "Producto agregado!",
+                duration: 3000,
+                newWindow: true,
+                close: false,
+                gravity: "top", // `top` or `bottom`
+                position: "right", // `left`, `center` or `right`
+                stopOnFocus: true, // Prevents dismissing of toast on hover
+                style: {
+                background: "lightgreen",
+                color: "black",
+                },
+                onClick: function(){} // Callback after click
+            }).showToast();
+
             /* console.log(carrito) */
             carritoCounter()
             saveLocal()
