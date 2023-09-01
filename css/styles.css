@@ -14,7 +14,7 @@ img {
   max-width: 100%;
 }
 
-.buscador {
+.buscar {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,7 +22,7 @@ img {
   margin-bottom: 60px;
 }
 
-#buscador {
+.buscador {
   display: inline-block;
   width: 350px;
   height: 40px;
@@ -178,6 +178,10 @@ img {
 
 .restar {
   cursor: pointer;
+}
+
+.filtro {
+  display: none;
 }
 
 .icon-cart {

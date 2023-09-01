@@ -24,8 +24,22 @@ const shopContent = document.getElementById("shopContent")
 const verCarrito = document.getElementById("verCarrito")
 const modalContainer = document.getElementById("modal-container")
 const cantidadCarrito = document.getElementById("cantidadCarrito")
+const buscador = document.getElementById("buscar");
 
 
+buscador.addEventListener('input', e => {    
+    if (e.target.id === 'buscar') {
+        const filtro = e.target.value.toLowerCase();
+        document.querySelectorAll('.card1').forEach(articulo => {
+            const contenidoArticulo = articulo.textContent.toLowerCase();
+            if (contenidoArticulo.includes(filtro)) {
+                articulo.classList.remove('filtro');
+            } else {
+                articulo.classList.add('filtro');
+            }
+        });
+    }
+});
 /* const productos =  */
 
 
