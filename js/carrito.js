@@ -45,6 +45,7 @@ carrito.forEach((product) => {
 
     restar.addEventListener("click", () =>{
         product.cantidad = product.cantidad > 1 ? product.cantidad - 1 : product.cantidad;
+        carritoCounter()
         saveLocal();
         pintarCarrito()
     })
@@ -53,6 +54,7 @@ carrito.forEach((product) => {
 let sumar = carritoContent.querySelector(".sumar")
 sumar.addEventListener("click", () => {
     product.cantidad++;
+    carritoCounter()
     saveLocal();
     pintarCarrito()
 })
@@ -105,12 +107,11 @@ pintarCarrito();
 const carritoCounter = () => {
     cantidadCarrito.style.display = "block";
 
-const carritoLength = carrito.length;
+    const totalCantidadProductos = carrito.reduce((acc, el) => acc + el.cantidad, 0);
 
-localStorage.setItem("carritoLength", JSON.stringify(carritoLength))
+    localStorage.setItem("carritoCantidad", JSON.stringify(totalCantidadProductos));
 
-    cantidadCarrito.innerText = JSON.parse(localStorage.getItem("carritoLength"))
-
+    cantidadCarrito.innerText = JSON.parse(localStorage.getItem("carritoCantidad"));
 }
 
 carritoCounter()
