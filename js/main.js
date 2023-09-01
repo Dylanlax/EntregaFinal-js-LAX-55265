@@ -2,7 +2,7 @@
 // Cartel bienvenida
 
 
-/* const cartelito = () => {
+const cartelito = () => {
     (async() => {
         const { value: email } = await Swal.fire({
     title: 'Ingrese su mail para recibir las ultimas novedades',
@@ -17,7 +17,7 @@ if (email) {
     })()
 }
 
-setTimeout(cartelito,500) */
+setTimeout(cartelito,500)
 
 
 const shopContent = document.getElementById("shopContent")
